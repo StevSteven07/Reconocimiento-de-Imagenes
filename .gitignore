@@ -1,0 +1,25 @@
+# Entornos virtuales de Python
+venv/
+env/
+.venv/
+
+# Carpeta de imágenes (si no quieres subirla)
+img/
+
+# Archivos de entorno (contraseñas, API keys)
+.env
+
+# Cache de Python
+__pycache__/
+*.pyc
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
