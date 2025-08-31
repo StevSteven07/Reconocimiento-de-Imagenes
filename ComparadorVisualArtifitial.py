@@ -2,6 +2,11 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+#Funcion para clasificar las similitudes
+#def clasificar_similitud(porcentaje):
+#    """Clasificar el porcentaje de similitud en categorias"""
+#    if
+
 def comparar_imagenes(img1_path, img2_path):
     # Cargar imágenes en escala de grises para facilitar la detección
     img1 = cv2.imread(img1_path, cv2.IMREAD_GRAYSCALE)
@@ -31,27 +36,36 @@ def comparar_imagenes(img1_path, img2_path):
             buenas.append(m)
 
     # Calcular porcentaje de similitud basado en puntos clave encontrados
-    similitud= (len(buenas) / max(len(kp1), len(kp2))) * 100
+    similitud=(len(buenas) / max(len(kp1), len(kp2))) * 10000
+
+    #Clasificacion del porcentaje de similitud
+    if similitud >= 90:
+        categoria= "Imagenes iguales ✅"
+    elif similitud >=50:
+        categoria= "Imagenes Similares 🔄"
+    else:
+        categoria= "Imagenes Diferentes ❌"
 
     # Mostrar resultados
     print(f"Coincidencias totales: {len(matches)}")
     print(f"Buenas coincidencias: {len(buenas)}")
-    print(f"Porcentaje de similitud: {similitud:.2f}%")
+    print(f"Porcentaje de similitud: {similitud:.0f}%")
+    print(f"Resultado: {categoria}")
 
-    # Dibujar las coincidencias en una imagen
+    """# Dibujar las coincidencias en una imagen
     img_coincidencias= cv2.drawMatches(img1, kp1, img2, kp2, buenas, None, flags=2)
 
     # Mostrar imagen resultante
     plt.figure(figsize=(15,8))
     plt.imshow(img_coincidencias)
-    plt.title(f"Similitud: {similitud:.2f}%")
+    plt.title(f"Similitud: {similitud:.0f}%")
     plt.axis("off")
-    plt.show()
+    plt.show() """
 
     return similitud
 
 # Ruta de tus imágenes
 imagen1= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\foto_prueba.jpg"
-imagen2= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\IMG_20250712_134320.jpg"
+imagen2= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\2017-02-08 18.52.04.png"
 
 comparar_imagenes(imagen1, imagen2)
