@@ -1,11 +1,48 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
+import tkinter as tk
+from tkinter import filedialog, messagebox
+import os
 
-#Funcion para clasificar las similitudes
-#def clasificar_similitud(porcentaje):
-#    """Clasificar el porcentaje de similitud en categorias"""
-#    if
+
+"""Funcion Seleccionar Imagenes"""
+def seleccionar_imagenes():
+    """Funsion usada para seleccionar imagenes en interfaz grafica
+    abre explorador de archivos"""
+    root= tk.Tk()
+    root.withdraw() #oculta la ventana de tkinter
+
+    #Dialogo para la primera imagen
+    print("Selecciona la primera imagen")
+    img1_path= filedialog.askopenfilename(
+        title="Seleccionar primera imagen",
+        filetypes=[
+            ("Imagenes", "*.jpg *.jpeg *.png *.bmp *.tiff"),
+            ("Todos los archivos","*.*")
+        ]
+    )
+
+    if not img1_path:
+        print("Se cancelo la seleccion de la primera imagen")
+        return None, None
+
+    #Dialogo de la segunda imagen
+    print("Seleccionar la segunda imagen"),
+    img2_path= filedialog.askopenfilename(
+          filetypes=[
+              ("Imagenes", "*.jpg *.jpeg *.png *.bmp *.tiff"),
+              ("Todos los archivos", "*.*")
+          ]
+    )
+
+    if not img2_path: 
+        print("Se cancelo la seleccion de la segunda imagen")
+        return None, None
+    
+    return img1_path, img2_path
+
+img1_path, img2_path= seleccionar_imagenes()
 
 def comparar_imagenes(img1_path, img2_path):
     # Cargar imágenes en escala de grises para facilitar la detección
@@ -63,9 +100,9 @@ def comparar_imagenes(img1_path, img2_path):
     plt.show() """
 
     return similitud
-
 # Ruta de tus imágenes
-imagen1= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\foto_prueba.jpg"
-imagen2= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\2017-02-08 18.52.04.png"
+#imagen1= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\foto_prueba.jpg"
+#imagen2= r"C:\Users\PC\Desktop\Steven\Conocimientos\Informatica\Proyectos\IMGDupl\img\2017-02-08 18.52.04.png"
 
-comparar_imagenes(imagen1, imagen2)
+#seleccionar_imagenes()
+comparar_imagenes(img1_path, img2_path)
